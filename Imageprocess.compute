@@ -1,0 +1,23 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel imageprogress
+Texture2D<float4> srcTexture;
+RWTexture2D<float4> Result;
+
+[numthreads(4, 4, 1)]
+void imageprogress(uint3 id : SV_DispatchThreadID)
+{
+	float4 centerColor = 0;
+	int lightcount = 0;
+	for (int k = -2; k < 3; k++) {
+		for (int l = -2; l < 3; l++) {
+			centerColor += srcTexture[id.xy + (k, l)];//これあってない気する
+		}
+	}
+	centerColor = centerColor / 25;
+	centerColor.w = 1;
+	Result[id.xy] = centerColor;
+
+	if (centerColor.r > 0.98 && centerColor.g > 0.98 && centerColor.b > 0.98) {
+		Result[id.xy] = float4(1, 0, 1, 1);
+	}
+}
