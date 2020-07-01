@@ -84,13 +84,14 @@ public class Histglam_test : MonoBehaviour, IInputClickHandler
             float nx = raynormal.x * 10 + 10;
             float ny = raynormal.y * 10 + 10;
             float nz = raynormal.z * 10 + 10;
-            int[,,] normalnum = new int[25,25,25];
-            normalnum[(int)nx, (int)ny, (int)nz]++;//同じベクトルの個数を求める（範囲は-1～1を０～２に変換している）
+            //int[,,] normalnum = new int[25,25,25];
+            //normalnum[(int)nx, (int)ny, (int)nz]++;//同じベクトルの個数を求める（範囲は-1～1を０～２に変換している）
             Debug.Log("法線ベクトルは" + raynormal);
+            VecToPol(raynormal.x, raynormal.y, raynormal.z);
         }
     }
 
-    public static Vector2 VecToPolTr(double x, double y, double z)//xyzをθφに変換し返す関数
+    public static Vector2 VecToPol(double x, double y, double z)//xyzをθφに変換し返す関数
     {
         double r = Math.Sqrt(x * x + y * y + z * z);
         double r2d = Math.Sqrt(x * x + z * z);
