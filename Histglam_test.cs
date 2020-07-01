@@ -87,7 +87,8 @@ public class Histglam_test : MonoBehaviour, IInputClickHandler
             //int[,,] normalnum = new int[25,25,25];
             //normalnum[(int)nx, (int)ny, (int)nz]++;//同じベクトルの個数を求める（範囲は-1～1を０～２に変換している）
             Debug.Log("法線ベクトルは" + raynormal);
-            VecToPol(raynormal.x, raynormal.y, raynormal.z);
+            Vector2 raypol = VecToPol(raynormal.x, raynormal.y, raynormal.z);
+            Debug.Log("極座標は"+raypol);
         }
     }
 
